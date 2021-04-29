@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> incrementNumber(int n, vector<int > A){
+    vector<int> B;
+    int sum, carry = 0, num, res;
+
+    for(int i = n-1; i >= 0; i--)
+    {
+        if(i == n-1)
+        {
+           sum = A[i] + 1;
+           num = sum % 10;
+           carry = sum / 10;
+
+           B.push_back(num);
+        }
+        else
+        {
+            sum = A[i] + carry;
+            num = sum % 10;
+            carry = sum / 10;
+            B.push_back(num);
+        }
+
+    }
+    if(carry>0)
+    B.push_back(carry);
+    reverse(B.begin(), B.end());
+    return B;
+    
+}
+
+
+int main(){
+    int n;
+    cin >> n;
+    vector<int> A(n);
+    for (auto &i : A)
+    {
+        cin >> i;
+    }
+    vector<int> result = incrementNumber(n, A);
+    for (int i = 0; i < result.size(); i++)
+    {
+        cout << result[i];
+    }
+}
