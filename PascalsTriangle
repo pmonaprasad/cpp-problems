@@ -1,0 +1,46 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+class PascalsTriangle {
+public:
+    vector<vector<int>> pascalsTriangle(int numRows) {
+        vector<vector<int>> p;
+        vector<int> ps;
+        int num;
+        for(int i = 0; i < numRows; i++)
+        {
+            for(int j = 0; j <= i; j++)
+            {
+                if(j == 0 || j == i)
+                {
+                    ps.push_back(1);
+                }
+                else
+                {
+                    num = p[i-1][j] + p[i-1][j-1];
+                    ps.push_back(num);
+
+                }
+                
+            }
+            p.push_back(ps);
+            ps.clear();
+        }
+        return p;
+    }
+};
+
+int main() {
+	int n;
+	cin >> n;
+	vector<vector<int>> result = PascalsTriangle().pascalsTriangle(n);
+	for(int i=0;i<result.size();i++)
+    {
+        for(int j=0;j<result[i].size();j++)
+        {
+            cout<<result[i][j]<<" ";
+        }
+        cout<<"\n";
+    }
+}
