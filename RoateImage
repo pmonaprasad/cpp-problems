@@ -1,0 +1,37 @@
+#include "../crio/cpp/io/PrintMatrix.hpp"
+#include "../crio/cpp/io/ReadMatrix.hpp"
+#include <bits/stdc++.h>
+using namespace std;
+
+class RotateImage {
+  public:
+  
+    void rotateImage(vector<vector<int>>& arr) {
+      int n = arr.size();
+      for(int i = 0; i < n; i++)
+      {
+        for(int j = i; j < n; j++)
+        {
+          swap(arr[i][j],arr[j][i]);
+        }
+      }
+      for(int i = 0; i < n; i++)
+      {
+        for(int j = 0; j < (n/2); j++)
+        {
+          swap(arr[i][j], arr[i][n-1-j]);
+        }
+      }
+ 
+    }
+};
+
+int main() {
+    int n;
+    cin >> n;
+    vector<vector<int>> matrix;
+    ReadMatrix<int>().SquareMatrix(n, matrix);
+    RotateImage().rotateImage(matrix);
+    PrintMatrix<int>().SquareMatrix(matrix);
+    return 0;
+}
