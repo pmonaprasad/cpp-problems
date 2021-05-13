@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long long int getLowVal(set<long long int>& lowVal, int& n)
+{
+    auto it = lowVal.lower_bound(n);
+    --it;
+    return (*it);
+}
+
+long long int maxSumTriplet(int n, vector<int> &nums){
+    int maxSuffArr[n+1];
+    maxSuffArr[n] = 0;
+    for(int i = n-1; i >= 0; --i)
+    maxSuffArr[i] = max(maxSuffArr[i+1], nums[i]);
+    
+    long long int ans = 0;
+    set<long long int> lowVal;
+    lowVal.insert(INT_MIN);
+
+    for(int i = 0; i < n; ++i)
+    {
+        if(maxSuffArr[i+1] > nums[i])
+        {
+            ans = max(ans, getLowVal(lowVal, nums[i]) + nums[i] + maxSuffArr[i+1]);
+            lowVal.insert(nums[i]);
+        }
+    }
+
+    return ans;
+}
+
+int main(){
+    int t, n;
+    cin >> t;
+    while (t--) {
+        cin >> n;
+        vector<int> nums(n);
+        for (int i = 0; i < n; i++) {
+            cin >> nums[i];
+        }
+        long long int ans = maxSumTriplet(n, nums);
+        cout << ans << endl;
+    }
+}
