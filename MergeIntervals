@@ -1,0 +1,32 @@
+using namespace std;
+
+class MergeIntervals {
+  public:
+    vector<vector<int>> mergeIntervals(vector<vector<int>>& intervals) {
+
+      sort(intervals.begin(), intervals.end());
+      vector<vector<int>> mergeIntval;
+
+      for(auto intval:intervals)
+      {
+        if(mergeIntval.empty() || mergeIntval.back()[1] < intval[0])
+        mergeIntval.push_back(intval);
+
+        else
+        mergeIntval.back()[1] = max(mergeIntval.back()[1], intval[1]);
+      }
+
+      return mergeIntval;
+    }
+};
+
+int main() {
+    int n;
+    cin >> n;
+    vector<vector<int>> nums;
+    ReadMatrix<int>().TwoDMatrix(n, 2, nums);
+    vector<vector<int>> result = MergeIntervals().mergeIntervals(nums);
+    PrintMatrix<int>().TwoDMatrix(result);
+    return 0;
+}
+;
