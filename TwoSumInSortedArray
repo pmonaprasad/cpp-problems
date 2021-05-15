@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+bool twoSumInSortedArray(int n, vector<int> arr, int target){
+
+    if(n == 0 || n == 1)
+    return false;
+    
+    int l = 0, r = n-1, sum = 0;
+    while(r > l)
+    {
+        sum = arr[l] + arr[r];
+        if(sum-target == 0) 
+            return true;
+
+        if(sum > target)
+        r--;
+        else l++;
+    }
+    return false;
+}
+
+
+int main(){
+    int n;
+    cin>>n;
+    vector<int > arr(n);
+    for(int i=0; i<n ;i++){
+        cin>>arr[i];
+    }
+    int target;
+    cin >> target;
+    bool ans = twoSumInSortedArray(n, arr, target);
+    cout << (ans ? "Present" : "Not Present") << "\n";
+}
