@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+long minimumPrefix(int n, vector<int> arr)
+{
+    long minPrefix, minSum = 0, sum = 0;
+    for(int i = 0; i < n; i++)
+    {
+        sum += arr[i];
+        minSum = min(sum, minSum);
+    }
+    return max(0l, -minSum);
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+    long answer = minimumPrefix(n, arr);
+    cout << answer << "\n";
+}
