@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int equalPartition(int n, vector<int> arr)
+{
+        int div = 14, flag = 0, pos = 1;
+    int i = 0, j = n-1;
+    long sum1, sum2;
+
+    if(n == 0 || n == 1 || n == 2)
+    return -1;
+    
+    sum1 = arr[i];
+    sum2 = arr[j];
+
+    while(i < (j-2))
+    {
+        if(sum1 < sum2)
+        {
+            i++;
+            sum1 += arr[i];
+        }
+
+        else if(sum1 > sum2)
+        {
+            j--;
+            sum2 += arr[j];
+        }
+        else
+        {
+            i++;
+            j--;
+            sum1 += arr[i];
+            sum2 += arr[j];
+        }
+
+    }
+    if(sum1 == sum2)
+    return (i+1);
+    else return -1;
+    
+}
+
+
+int main()
+{
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for (auto &el : arr)
+    {
+        cin >> el;
+    }
+    int answer = equalPartition(n, arr);
+    cout << answer << "\n";
+}
