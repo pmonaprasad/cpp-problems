@@ -1,0 +1,45 @@
+#include "../crio/cpp/io/FastIO.hpp"
+#include "../crio/cpp/io/ReadMatrix.hpp"
+#include <bits/stdc++.h>
+using namespace std;
+
+int ncompare(int x, int y)
+{
+  string xy, yx, sx, sy;
+  sx = to_string(x);
+  sy = to_string(y);
+  xy = sx + sy;
+  yx = sy + sx;
+  int i = stoi(xy);
+  int j = stoi(yx);
+  return (i > j);
+}
+
+class LargestNumber {
+  public:
+
+    string largestNumber(vector<int>& nums) 
+    {
+      int n = nums.size(), i;
+      string result;
+      string xy, yx, temp, x, y;
+
+      sort(nums.begin(), nums.end(), ncompare);
+
+      for(auto i:nums)
+      result.append(to_string(i));
+
+      return result;
+    }
+};
+
+int main() {
+    FastIO();
+    int n;
+    cin >> n;
+    vector<int> nums;
+    ReadMatrix<int>().OneDMatrix(n, nums);
+    string result = LargestNumber().largestNumber(nums);
+    cout << result;
+    return 0;
+}
