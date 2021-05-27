@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int countOccurrences(int n, vector<int> &arr, int k)
+{
+    vector<int>:: iterator lb, ub;
+
+    lb = lower_bound(arr.begin(), arr.end(), k);
+
+    if(lb == arr.end() || *lb != k )
+    return 0;
+
+    ub = upper_bound(arr.begin(), arr.end(), k);
+
+    return ub - lb;
+
+}
+
+int main(){
+    int n, k;
+    cin >> n >> k;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> arr[i];
+    }
+    int result = countOccurrences(n, arr, k);
+    cout << result;
+}
+//
