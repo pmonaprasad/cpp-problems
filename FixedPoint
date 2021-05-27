@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int fixedPoint(int n, vector<int > A){
+    int low = 0, high = n-1;
+    while(low <= high)
+    {
+        int mid = (low + high) / 2;
+        if(mid == A[mid])
+        return mid;
+        else if(mid < A[mid])
+        {
+            high = mid - 1;
+        }
+        else
+            low = mid + 1;
+    }
+        return -1;    
+}
+
+int main(){
+    int n;
+    cin>> n; 
+    vector<int > A(n);
+    for(auto &i: A)
+        cin>>i;
+    assert(A[n-1]!=0);
+    int ans = fixedPoint(n, A);
+    cout<< ans << "\n";
+}
+
