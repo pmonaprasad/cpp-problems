@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int overlappingIntervals(int n, vector<pair<int, int> >& intervals)
+{
+    int max_dist = -1, dist;
+    sort(intervals.begin(), intervals.end());
+    int last_intval = intervals[n-1].first;
+    for(auto intval : intervals)
+    {
+        if(last_intval > intval.first)
+        {
+            dist = last_intval - intval.second;
+            max_dist = max(dist, max_dist);
+        }
+
+    }
+
+ return max_dist;
+ 
+}
+
+
+int main(){
+    int n;
+    cin >> n;
+    vector<pair<int, int> > intervals(n);
+    for(int i = 0 ;i < n; i ++){
+        cin >> intervals[i].first >> intervals[i].second;
+    }
+    int farthestDistance = overlappingIntervals(n, intervals);
+    cout << farthestDistance;
+}
